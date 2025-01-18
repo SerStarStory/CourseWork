@@ -27,6 +27,7 @@ public interface CWLTypes {
   IElementType UNARY_OPERATION = new CWLElementType("UNARY_OPERATION");
   IElementType VARIABLE_DECLARATION = new CWLElementType("VARIABLE_DECLARATION");
   IElementType VARIABLE_NAME = new CWLElementType("VARIABLE_NAME");
+  IElementType WHILE_STATEMENT = new CWLElementType("WHILE_STATEMENT");
   IElementType WHILE_STMT = new CWLElementType("WHILE_STMT");
 
   IElementType AND = new CWLTokenType("AND");
@@ -34,12 +35,14 @@ public interface CWLTypes {
   IElementType COLON = new CWLTokenType("COLON");
   IElementType COMMA = new CWLTokenType("COMMA");
   IElementType COMMENT = new CWLTokenType("");
+  IElementType CONTINUE = new CWLTokenType("CONTINUE");
   IElementType DIV = new CWLTokenType("DIV");
   IElementType DO = new CWLTokenType("DO");
   IElementType DOWNTO = new CWLTokenType("DOWNTO");
   IElementType ELSE = new CWLTokenType("ELSE");
   IElementType END = new CWLTokenType("END");
   IElementType EQ = new CWLTokenType("EQ");
+  IElementType EXIT = new CWLTokenType("EXIT");
   IElementType FOR = new CWLTokenType("FOR");
   IElementType GOTO = new CWLTokenType("GOTO");
   IElementType GRE = new CWLTokenType("GRE");
@@ -128,6 +131,9 @@ public interface CWLTypes {
       }
       else if (type == VARIABLE_NAME) {
         return new CWLVariableNameImpl(node);
+      }
+      else if (type == WHILE_STATEMENT) {
+        return new CWLWhileStatementImpl(node);
       }
       else if (type == WHILE_STMT) {
         return new CWLWhileStmtImpl(node);

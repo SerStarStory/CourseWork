@@ -11,14 +11,14 @@ import static com.github.serstarstory.spcoursework.psi.CWLTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.serstarstory.spcoursework.psi.*;
 
-public class CWLWhileStmtImpl extends ASTWrapperPsiElement implements CWLWhileStmt {
+public class CWLWhileStatementImpl extends ASTWrapperPsiElement implements CWLWhileStatement {
 
-  public CWLWhileStmtImpl(@NotNull ASTNode node) {
+  public CWLWhileStatementImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull CWLVisitor visitor) {
-    visitor.visitWhileStmt(this);
+    visitor.visitWhileStatement(this);
   }
 
   @Override
@@ -28,15 +28,9 @@ public class CWLWhileStmtImpl extends ASTWrapperPsiElement implements CWLWhileSt
   }
 
   @Override
-  @NotNull
-  public CWLExpression getExpression() {
-    return findNotNullChildByClass(CWLExpression.class);
-  }
-
-  @Override
-  @NotNull
-  public List<CWLWhileStatement> getWhileStatementList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, CWLWhileStatement.class);
+  @Nullable
+  public CWLStatement getStatement() {
+    return findChildByClass(CWLStatement.class);
   }
 
 }

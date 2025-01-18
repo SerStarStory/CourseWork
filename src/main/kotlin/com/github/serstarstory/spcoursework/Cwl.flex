@@ -63,6 +63,8 @@ VALUE = [0-9]*
     "end" { return END; }
     "repeat" { return REPEAT; }
     "until" { return UNTIL; }
+    "exit" { return EXIT; }
+    "continue" { return CONTINUE; }
 
 
   {IDENTIFIER}       { return IDENTIFIER; }

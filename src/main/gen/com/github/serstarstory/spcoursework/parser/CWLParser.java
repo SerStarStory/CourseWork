@@ -467,7 +467,39 @@ public class CWLParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // WHILE LBRACKET Expression RBRACKET Statement* END WHILE
+  // Statement|{CONTINUE|EXIT} WHILE
+  public static boolean WhileStatement(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WhileStatement")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, WHILE_STATEMENT, "<while statement>");
+    r = Statement(b, l + 1);
+    if (!r) r = WhileStatement_1(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // {CONTINUE|EXIT} WHILE
+  private static boolean WhileStatement_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WhileStatement_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = WhileStatement_1_0(b, l + 1);
+    r = r && consumeToken(b, WHILE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // CONTINUE|EXIT
+  private static boolean WhileStatement_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WhileStatement_1_0")) return false;
+    boolean r;
+    r = consumeToken(b, CONTINUE);
+    if (!r) r = consumeToken(b, EXIT);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // WHILE LBRACKET Expression RBRACKET WhileStatement* END WHILE
   public static boolean WhileStmt(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WhileStmt")) return false;
     if (!nextTokenIs(b, WHILE)) return false;
@@ -482,12 +514,12 @@ public class CWLParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Statement*
+  // WhileStatement*
   private static boolean WhileStmt_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WhileStmt_4")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!Statement(b, l + 1)) break;
+      if (!WhileStatement(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "WhileStmt_4", c)) break;
     }
     return true;

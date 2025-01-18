@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface CWLWhileStmt extends PsiElement {
+public interface CWLWhileStatement extends PsiElement {
 
-  @NotNull
-  CWLExpression getExpression();
-
-  @NotNull
-  List<CWLWhileStatement> getWhileStatementList();
+  @Nullable
+  CWLStatement getStatement();
 
 }

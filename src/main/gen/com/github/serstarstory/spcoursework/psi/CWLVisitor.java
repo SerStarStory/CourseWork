@@ -83,6 +83,10 @@ public class CWLVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitWhileStatement(@NotNull CWLWhileStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitWhileStmt(@NotNull CWLWhileStmt o) {
     visitPsiElement(o);
   }

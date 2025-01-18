@@ -30,7 +30,7 @@ class CWLHighlighter: SyntaxHighlighterBase() {
                  CWLTypes.IF, CWLTypes.ELSE, CWLTypes.FOR,
                  CWLTypes.TO, CWLTypes.DOWNTO, CWLTypes.DO,
                  CWLTypes.WHILE, CWLTypes.REPEAT, CWLTypes.UNTIL,
-                 CWLTypes.END-> KEY
+                 CWLTypes.END, CWLTypes.CONTINUE, CWLTypes.EXIT -> KEY
             CWLTypes.SEMICOLON -> SEMICOLON
             CWLTypes.COMMENT -> COMMENT
             CWLTypes.ASSIGN -> ASSIGN
