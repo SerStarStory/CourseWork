@@ -1,0 +1,6 @@
+.vs
+verify_syntax_by_EBNF
+cw_sp2__2024_2025/x64
+x64
+test_programs/*
+!test_programs/*.cwl
