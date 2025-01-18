@@ -1,0 +1,40 @@
+{
+  parserClass="com.github.serstarstory.spcoursework.parser.CWLParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="CWL"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.serstarstory.spcoursework.psi"
+  psiImplPackage="com.github.serstarstory.spcoursework.psi.impl"
+
+  elementTypeHolderClass="com.github.serstarstory.spcoursework.psi.CWLTypes"
+  elementTypeClass="com.github.serstarstory.spcoursework.psi.CWLElementType"
+  tokenTypeClass="com.github.serstarstory.spcoursework.psi.CWLTokenType"
+  tokens = [
+    COMMENT = ''
+    WHITE_SPACE = 'regexp:\s+'
+  ]
+}
+
+StartDefinition ::= PROGRAM ProgramName SEMICOLON START VariableDeclaration ProgramBody STOP
+ProgramName ::= IDENTIFIER
+VariableDeclaration ::= VARIABLE VARIABLE_TYPE VariableName (COMMA VariableName)* SEMICOLON
+VariableName ::= IDENTIFIER
+ProgramBody ::= Statement*
+Statement ::= InputStatement|OutputStatement|RlExpression|LabelStmt|GotoStmt|IfStmt|ForToDownToStmt|WhileStmt|RepeatUntilStmt
+InputStatement ::= INPUT LBRACKET VariableName RBRACKET
+OutputStatement ::= OUTPUT LBRACKET VariableName RBRACKET
+RlExpression ::= VariableName ASSIGN Expression
+Expression ::= LeftExpression (BinaryAction LeftExpression)*
+LeftExpression ::= {LBRACKET Expression RBRACKET} | {UnaryOperation VariableName} | IDENTIFIER | VALUE
+BinaryAction ::= PLUS|MINUS|MUL|DIV|MOD|AND|OR|NOT|EQ|NEQ|GRE|LSE
+UnaryOperation ::= MINUS|NOT
+LabelStmt ::= LabelDef COLON
+GotoStmt ::= GOTO LabelCall
+LabelDef ::= IDENTIFIER
+LabelCall ::= IDENTIFIER
+IfStmt ::= IF LBRACKET Expression RBRACKET Statement* SEMICOLON [ELSE Statement* SEMICOLON ]
+ForToDownToStmt ::= FOR RlExpression {TO|DOWNTO} VALUE DO Statement* SEMICOLON
+WhileStmt ::= WHILE LBRACKET Expression RBRACKET Statement* END WHILE
+RepeatUntilStmt ::= REPEAT Statement* UNTIL LBRACKET Expression RBRACKET
