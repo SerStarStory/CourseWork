@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
 			printf("-------------------------------------------------------------------\r\n\r\n");
 		}
 
-		int commentRemoverResult = commentRemover(text, "#*", "*#");
+		int commentRemoverResult = commentRemover(text, "##", "##");
 		if (commentRemoverResult) {
 			printf("Comment remover return %d\r\n", commentRemoverResult);
 			printf("Press Enter to exit . . .");
