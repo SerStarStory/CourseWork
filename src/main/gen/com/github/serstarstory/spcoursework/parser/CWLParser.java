@@ -499,28 +499,27 @@ public class CWLParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // WHILE LBRACKET Expression RBRACKET WhileStatement* END WHILE
+  // WHILE Expression WhileStatement* END WHILE
   public static boolean WhileStmt(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "WhileStmt")) return false;
     if (!nextTokenIs(b, WHILE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeTokens(b, 0, WHILE, LBRACKET);
+    r = consumeToken(b, WHILE);
     r = r && Expression(b, l + 1);
-    r = r && consumeToken(b, RBRACKET);
-    r = r && WhileStmt_4(b, l + 1);
+    r = r && WhileStmt_2(b, l + 1);
     r = r && consumeTokens(b, 0, END, WHILE);
     exit_section_(b, m, WHILE_STMT, r);
     return r;
   }
 
   // WhileStatement*
-  private static boolean WhileStmt_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "WhileStmt_4")) return false;
+  private static boolean WhileStmt_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "WhileStmt_2")) return false;
     while (true) {
       int c = current_position_(b);
       if (!WhileStatement(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "WhileStmt_4", c)) break;
+      if (!empty_element_parsed_guard_(b, "WhileStmt_2", c)) break;
     }
     return true;
   }

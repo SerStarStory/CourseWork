@@ -37,5 +37,5 @@ LabelCall ::= IDENTIFIER
 IfStmt ::= IF LBRACKET Expression RBRACKET Statement* SEMICOLON [ELSE Statement* SEMICOLON ]
 ForToDownToStmt ::= FOR RlExpression {TO|DOWNTO} VALUE DO Statement* SEMICOLON
 WhileStatement ::= Statement|{CONTINUE|EXIT} WHILE
-WhileStmt ::= WHILE LBRACKET Expression RBRACKET WhileStatement* END WHILE
+WhileStmt ::= WHILE Expression WhileStatement* END WHILE
 RepeatUntilStmt ::= REPEAT Statement* UNTIL LBRACKET Expression RBRACKET
