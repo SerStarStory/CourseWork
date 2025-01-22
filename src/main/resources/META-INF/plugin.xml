@@ -34,9 +34,7 @@
         <annotator
                 language="CWL"
                 implementationClass="com.github.serstarstory.spcoursework.psi.UndefinedVariableAnnotator"/>
-        <lang.syntaxHighlighterFactory
-                language="CWL"
-                implementationClass="com.github.serstarstory.spcoursework.CWLHighlighterFactory"/>
+
 
     </extensions>
 </idea-plugin>

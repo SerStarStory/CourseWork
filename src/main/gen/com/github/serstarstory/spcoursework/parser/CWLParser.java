@@ -251,14 +251,14 @@ public class CWLParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // {LBRACKET Expression RBRACKET} | {UnaryOperation VariableName} | IDENTIFIER | VALUE
+  // {LBRACKET Expression RBRACKET} | {UnaryOperation VariableName} | VariableName | VALUE
   public static boolean LeftExpression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "LeftExpression")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, LEFT_EXPRESSION, "<left expression>");
     r = LeftExpression_0(b, l + 1);
     if (!r) r = LeftExpression_1(b, l + 1);
-    if (!r) r = consumeToken(b, IDENTIFIER);
+    if (!r) r = VariableName(b, l + 1);
     if (!r) r = consumeToken(b, VALUE);
     exit_section_(b, l, m, r, false, null);
     return r;

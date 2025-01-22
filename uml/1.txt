@@ -1,0 +1,26 @@
+@startuml
+start
+:Прочитати файл;
+:Вирізати коментарі;
+:За домогою регулярного виразу токенізувати;
+while (Є токен?) is (Так)
+:За допомогою регулярних виразів визначити тип токена;
+:Створити LexemInfo info;
+if (Ключове слово) then (Так)
+    :За допомогою таблиці ключових слів знайти id;
+    :info.lexemId = id;
+    :info.lexemType = 1;
+(Ні) elseif (Ідентифікатор) then (Так)
+    :За допомогою таблиці змінних знайти id;
+    :info.lexemId = id;
+    :info.lexemType = 2;
+(Ні) elseif (Число) then (Так)
+    :info.ifvalue = atoi(токен);
+    :info.lexemId = 320;
+    :info.lexemType = 2;
+else (Помилка)
+    end
+endif
+endwhile(Ні)
+stop
+@enduml

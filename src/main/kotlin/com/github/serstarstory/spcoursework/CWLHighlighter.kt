@@ -3,9 +3,11 @@ package com.github.serstarstory.spcoursework
 import com.github.serstarstory.spcoursework.psi.CWLTypes
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
+import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
+import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 
 class CWLHighlighter: SyntaxHighlighterBase() {
@@ -17,6 +19,7 @@ class CWLHighlighter: SyntaxHighlighterBase() {
         val COMMENT = arrayOf(createTextAttributesKey("CWL_COMMENT", DefaultLanguageHighlighterColors.BLOCK_COMMENT))
         val BRACKETS = arrayOf(createTextAttributesKey("CWL_BRACKETS", DefaultLanguageHighlighterColors.LINE_COMMENT))
         val FUNC = arrayOf(createTextAttributesKey("CWL_FUNC", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION))
+        val BAD = arrayOf(createTextAttributesKey("CWL_BAD", HighlighterColors.BAD_CHARACTER))
         val EMPTY = arrayOf<TextAttributesKey>()
     }
 
@@ -37,6 +40,7 @@ class CWLHighlighter: SyntaxHighlighterBase() {
             CWLTypes.IDENTIFIER -> IDENTIFIER
             CWLTypes.LBRACKET, CWLTypes.RBRACKET, CWLTypes.START, CWLTypes.STOP -> BRACKETS
             CWLTypes.INPUT, CWLTypes.OUTPUT -> FUNC
+            TokenType.BAD_CHARACTER -> BAD
             else -> EMPTY
         }
     }
