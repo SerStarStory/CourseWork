@@ -3,7 +3,7 @@ package com.github.serstarstory.spcoursework
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 
-object CWLFileType:  LanguageFileType(CWLLanguage) {
+object CWLFileType: LanguageFileType(CWLLanguage) {
     override fun getName(): String {
         return "CWL"
     }

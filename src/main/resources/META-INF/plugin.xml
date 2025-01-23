@@ -34,7 +34,11 @@
         <annotator
                 language="CWL"
                 implementationClass="com.github.serstarstory.spcoursework.psi.UndefinedVariableAnnotator"/>
-
-
+        <!--compileServer.plugin classpath="jps-plugin-1.0-SNAPSHOT.jar"/-->
+        <configurationType
+                implementation="com.github.serstarstory.spcoursework.run.CWLRunConfigurationType"/>
+        <runLineMarkerContributor
+                language="CWL"
+                implementationClass="com.github.serstarstory.spcoursework.run.CWLRunLineMarkerContributor"/>
     </extensions>
 </idea-plugin>
