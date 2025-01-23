@@ -405,7 +405,7 @@ extern char* tokenStruct[MAX_TOKEN_STRUCT_ELEMENT_COUNT][MAX_TOKEN_STRUCT_ELEMEN
         {"continue_while", 2, {"tokenCONTINUE","tokenWHILE"}},\
         {"exit_while", 2, {"tokenEXIT","tokenWHILE"}},\
         {"tokenWHILE__expression", 2, {"tokenWHILE","expression"}},\
-        {"tokenEND__tokenWHILE", 2, {"tokenEND","tokenWHILE"}},\
+        {"tokenEND__tokenWHILE", 2, {"tokenENDWHILE","tokenWHILE"}},\
         {"tokenWHILE__expression__statement_in_while_body", 2, {"tokenWHILE__expression","statement_in_while_body"}},\
         {"tokenWHILE__expression__statement_in_while_body____iteration_after_two", 2, {"tokenWHILE__expression","statement_in_while_body____iteration_after_two"}},\
         {"while_cycle", 2, {"tokenWHILE__expression__statement_in_while_body____iteration_after_two","tokenEND__tokenWHILE"}},\
@@ -502,6 +502,7 @@ extern char* tokenStruct[MAX_TOKEN_STRUCT_ELEMENT_COUNT][MAX_TOKEN_STRUCT_ELEMEN
         {"tokenBODY", 1, {T_BODY_0}},\
         {"tokenDATA", 1, {T_DATA_0}},\
         {"tokenEND", 1, {T_END_0}},\
+        {"tokenENDWHILE", 1, {T_END_WHILE_0}},\
         {"tokenSEMICOLON", 1, {T_SEMICOLON_0}},\
 \
         {"value", 1, {"value_terminal"}},\
@@ -592,7 +593,7 @@ extern char* tokenStruct[MAX_TOKEN_STRUCT_ELEMENT_COUNT][MAX_TOKEN_STRUCT_ELEMEN
     {"continue_while", 2, {"tokenCONTINUE","tokenWHILE"}},\
     {"exit_while", 2, {"tokenEXIT","tokenWHILE"}},\
     {"tokenWHILE__expression", 2, {"tokenWHILE","expression"}},\
-    {"tokenEND__tokenWHILE", 2, {"tokenEND","tokenWHILE"}},\
+    {"tokenEND__tokenWHILE", 2, {"tokenENDWHILE","tokenWHILE"}},\
     {"tokenWHILE__expression__statement_in_while_body", 2, {"tokenWHILE__expression","statement_in_while_body"}},\
     {"tokenWHILE__expression__statement_in_while_body____iteration_after_two", 2, {"tokenWHILE__expression","statement_in_while_body____iteration_after_two"}},\
     {"while_cycle", 2, {"tokenWHILE__expression__statement_in_while_body____iteration_after_two","tokenEND__tokenWHILE"}},\

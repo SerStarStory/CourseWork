@@ -39,7 +39,7 @@ void comandLineParser(int argc, char* argv[], unsigned long long int* mode, char
 			continue;
 		}
 		else if (!strcmp(argv[index], "-gen")) {
-			*mode |= MAKE_ASSEMBLY | MAKE_BINARY;
+			*mode |= MAKE_PREPARE | MAKE_ASSEMBLY | MAKE_BINARY;
 			modesNotDefined = 0;
 			continue;
 		}
@@ -49,7 +49,7 @@ void comandLineParser(int argc, char* argv[], unsigned long long int* mode, char
 			continue;
 		}
 		else if (!strcmp(argv[index], "-all")) {
-			*mode |= LEXICAL_ANALYZE_MODE | SYNTAX_ANALYZE_MODE | SEMANTIX_ANALYZE_MODE | MAKE_ASSEMBLY | MAKE_BINARY | RUN_BINARY;
+			*mode |= LEXICAL_ANALYZE_MODE | SYNTAX_ANALYZE_MODE | SEMANTIX_ANALYZE_MODE | MAKE_PREPARE | MAKE_ASSEMBLY | MAKE_BINARY | RUN_BINARY;
 			modesNotDefined = 0;
 			continue;
 		}

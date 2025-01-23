@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -215,18 +215,8 @@
     <None Include="..\test_programs\file2_ki308.cwl" />
     <None Include="..\test_programs\file3.cwl" />
     <None Include="..\test_programs\file3_ki308.cwl" />
-    <None Include="..\test_programs\file4.cwl" />
-    <None Include="..\test_programs\file4_.cwl" />
-    <None Include="..\test_programs\file4_ki308.cwl" />
-    <None Include="..\test_programs\file4_ki308_.cwl" />
-    <None Include="..\test_programs\file5.cwl" />
-    <None Include="..\test_programs\file5_.cwl" />
-    <None Include="..\test_programs\file5_ki308.cwl" />
-    <None Include="..\test_programs\file5_ki308_.cwl" />
-    <None Include="..\test_programs\file6.cwl" />
-    <None Include="..\test_programs\file6_ki308.cwl" />
-    <None Include="..\test_programs\file7.cwl" />
-    <None Include="..\test_programs\file7_ki308.cwl" />
+    <None Include="file4.cwl" />
+    <None Include="file5.cwl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
