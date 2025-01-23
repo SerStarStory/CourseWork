@@ -5,15 +5,12 @@ import com.intellij.execution.configuration.EmptyRunProfileState
 import com.intellij.execution.configurations.*
 import com.intellij.execution.process.*
 import com.intellij.execution.runners.ExecutionEnvironment
-import com.intellij.openapi.application.assertWriteAccessAllowed
-import com.intellij.openapi.application.runWriteAction
-import com.intellij.openapi.application.writeAction
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.io.toNioPath
-import io.ktor.utils.io.*
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
+import java.nio.file.StandardOpenOption
 import kotlin.io.path.Path
 import kotlin.io.path.pathString
 import kotlin.io.path.relativeTo
@@ -49,21 +46,19 @@ class CWLRunConfiguration constructor(project: Project, factory: ConfigurationFa
         }
         val inputFileName = inputFilePath.fileName.pathString
         val inputFileWorkingPath = Path(workingDir, inputFileName)
+        val starter = Path(workingDir, "starter.bat")
+        val fileExe = inputFileName.substring(0, inputFileName.lastIndexOf('.') + 1) + "exe"
+        Files.write(starter, listOf("compiler.exe -all $inputFileName", "start cmd.exe /C $fileExe"), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING)
         Files.copy(inputFilePath, inputFileWorkingPath, StandardCopyOption.REPLACE_EXISTING)
-
         return object: CommandLineState(environment) {
             override fun startProcess(): ProcessHandler {
                 val commandLine: GeneralCommandLine =
-                    GeneralCommandLine("compiler.exe").withWorkDirectory(workingDir).apply {
-                        addParameters("-all", inputFileName)
+                    GeneralCommandLine("cmd.exe").withWorkDirectory(workingDir).apply {
+                        addParameters("/C starter.bat")
                     }
-                val fileNameWithoutExtension = inputFileName.substring(0, inputFileName.lastIndexOf('.'))
                 val processHandler = ProcessHandlerFactory.getInstance()
                     .createColoredProcessHandler(commandLine)
                 ProcessTerminatedListener.attach(processHandler)
-                runWriteAction {
-
-                }
                 return processHandler
             }
         }

@@ -19,29 +19,7 @@ import kotlinx.coroutines.runBlocking
 import java.nio.file.Files
 import kotlin.io.path.Path
 
-class CWLRunLineMarkerContributor : RunLineMarkerContributor() {
-    fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        // Перевірка, чи це функція, для якої потрібен трикутничок
-        /*if (element is PsiMethod && element.name == "main") { // Адаптуйте під свою мову
-            return LineMarkerInfo(
-                element,
-                element.textRange,
-                AllIcons.RunConfigurations.TestState.Run, // Іконка трикутника
-                { "Run ${element.name}" }, // Текст підказки
-                { event, elt ->
-                    // Обробник запуску
-                    val runManager = ProgramRunnerUtil.getRunManager()
-                    val configuration = MyRunConfiguration(elt.project, "Run ${elt.name}")
-                    runManager.addConfiguration(configuration)
-                    ProgramRunnerUtil.executeConfiguration(configuration, DefaultDebugExecutor.getDebugExecutorInstance())
-                },
-                GutterIconRenderer.Alignment.LEFT,
-                { "Run" }
-            )
-        }*/
-        return null
-    }
-
+class CWLRunLineMarkerContributor: RunLineMarkerContributor() {
     override fun getInfo(element: PsiElement): Info? {
         if (element.elementType != CWLTypes.PROGRAM) return null
         return Info(AllIcons.RunConfigurations.TestState.Run, {"Run"}, object: AnAction() {
